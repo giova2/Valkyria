@@ -3,7 +3,7 @@
   -->
   <nav
     id="barra-navegacion"
-    class="flex items-center justify-between flex-wrap bg-red-900 border-yellow-500 border-b-4 border-t-4 p-6"
+    class="flex items-center justify-between flex-wrap bg-indigo-800 border-yellow-500 border-b-4 border-t-4 p-6"
   >
     <div class="flex items-center flex-shrink-0 text-white mr-6">
       <div class="absolute left-0 top-0">
@@ -24,21 +24,21 @@
     <div v-show="showMenu" class="block sm:hidden w-full">
       <ul class="text-right text-sm lg:flex-grow">
         <li>
-          <router-link tag="li" to="/">
+          <router-link tag="li" :to="ValkyriaRoute">
             <span
               class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
             >Concepto Valkyria</span>
           </router-link>
         </li>
         <li>
-          <router-link v-if="showPanel" tag="li" to="/panel">
+          <router-link v-if="showPanel" tag="li" :to="PanelRoute">
             <span
               class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
             >Panel</span>
           </router-link>
         </li>
         <li>
-          <router-link tag="li" to="/contacto">
+          <router-link tag="li" :to="ContactoRoute">
             <span
               class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
             >Contacto</span>
@@ -48,17 +48,17 @@
     </div>
     <div class="hidden sm:block flex-grow lg:flex lg:items-center lg:w-auto">
       <ul class="text-right text-sm lg:flex-grow">
-        <router-link tag="li" to="/">
+        <router-link tag="li" :to="ValkyriaRoute">
           <span
             class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
           >Concepto Valkyria</span>
         </router-link>
-        <router-link v-if="showPanel" tag="li" to="/panel">
+        <router-link v-if="showPanel" tag="li" :to="PanelRoute">
           <span
             class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
           >Panel</span>
         </router-link>
-        <router-link tag="li" to="/contacto">
+        <router-link tag="li" :to="ContactoRoute">
           <span
             class="inline-block lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4"
           >Contacto</span>
@@ -77,6 +77,12 @@ import Auth from "../packages/auth";
 export default defineComponent({
   name: "Navbar",
   setup() {
+    const BASE = process.env.VUE_APP_BASE_PATH
+      ? process.env.VUE_APP_BASE_PATH
+      : "";
+    const ValkyriaRoute = ref(BASE + "/");
+    const PanelRoute = ref(BASE + "/panel");
+    const ContactoRoute = ref(BASE + "/contacto");
     const showPanel = ref(null);
     const showNavbar = ref(true);
     const showMenu = ref(true);
@@ -95,6 +101,9 @@ export default defineComponent({
       showPanel,
       showNavbar,
       showMenu,
+      ValkyriaRoute,
+      PanelRoute,
+      ContactoRoute,
       // methods
       displayMenu
     };

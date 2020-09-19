@@ -5,13 +5,14 @@ import Panel from "../views/Panel.vue";
 import Valkyria from "../views/Valkyria.vue";
 import Contacto from "../views/Contacto.vue";
 
+const BASE = process.env.VUE_APP_BASE_PATH ? process.env.VUE_APP_BASE_PATH : "";
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/login",
+    path: `${BASE}/login`,
     component: Login,
   },
   {
-    path: "/panel",
+    path: `${BASE}/panel`,
     component: Panel,
     meta: {
       // esto es el equivalente a middleware en Laravel
@@ -19,15 +20,15 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/",
+    path: `${BASE}/`,
     component: () => import("../views/Valkyria.vue"),
   },
   {
-    path: "/valkyria",
+    path: `${BASE}/valkyria`,
     component: Valkyria,
   },
   {
-    path: "/contacto",
+    path: `${BASE}/contacto`,
     component: Contacto,
   },
   {

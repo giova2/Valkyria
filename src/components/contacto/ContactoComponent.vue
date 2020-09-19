@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full form-contact-wrapper pl-4 -mt-10 flex justify-start items-center h-screen">
+  <div
+    class="w-full form-contact-wrapper pl-auto md:pl-4 -mt-10 flex justify-start items-center h-screen"
+  >
     <Loading v-if="aviso" />
     <!-- -mt10 porque tenemos que el componente superior tiene 10 de padding superior  -->
     <form class="w-full max-w-lg" @submit.prevent="onCaptchaVerify">
@@ -16,7 +18,9 @@
           placeholder="Su Nombre (*)"
           type="text"
         />
-        <p v-show="error.nombre" class="text-red-500 text-xs italic">Su nombre.</p>
+        <p v-show="error.nombre" class="text-red-500 text-xs italic">
+          Su nombre.
+        </p>
       </div>
       <div class="w-full px-3">
         <input
@@ -28,7 +32,9 @@
           type="email"
           placeholder="Email (*)"
         />
-        <p v-show="error.email" class="text-red-500 text-xs italic">Su e-mail.</p>
+        <p v-show="error.email" class="text-red-500 text-xs italic">
+          Su e-mail.
+        </p>
       </div>
       <div class="w-full px-3">
         <input
@@ -52,7 +58,9 @@
           placeholder="Ingresa tu consulta aquí (*)"
           rows="4"
         ></textarea>
-        <p v-show="error.mensaje" class="text-red-500 text-xs italic">Mensaje.</p>
+        <p v-show="error.mensaje" class="text-red-500 text-xs italic">
+          Mensaje.
+        </p>
       </div>
       <!-- <hr /> -->
       <input type="hidden" v-model="fishing" />
@@ -85,13 +93,13 @@ export default defineComponent({
       nombre: "",
       email: "",
       asunto: "",
-      mensaje: ""
+      mensaje: "",
     });
     const error = reactive({
       nombre: false,
       email: false,
       asunto: false,
-      mensaje: false
+      mensaje: false,
     });
     const aviso = ref(false);
     const rcaptchaSigKey = ref("6LeqkcsZAAAAAMcRTTo10qgTN0w_V34IzsGz7HHl");
@@ -137,18 +145,18 @@ export default defineComponent({
             method: "POST",
             body: JSON.stringify(datos),
             headers: {
-              "Content-Type": "application/json"
-            }
+              "Content-Type": "application/json",
+            },
           })
-            .then(response => response.json())
-            .then(response => {
+            .then((response) => response.json())
+            .then((response) => {
               $alerta.success(
                 "Enviado!",
                 "El mensaje fue enviado correctamente"
               );
               aviso.value = false;
             })
-            .catch(err => {
+            .catch((err) => {
               $alerta.error(
                 "Hay errores",
                 "Error al enviar, intentelo nuevamente"
@@ -172,15 +180,15 @@ export default defineComponent({
       fishing,
       //methods
       onCaptchaVerify,
-      enviar
+      enviar,
     };
   },
 
   components: {
-    Loading
+    Loading,
     // VueRecaptcha
     // ValidationObserver,
     // ValidationProvider
-  }
+  },
 });
 </script>
