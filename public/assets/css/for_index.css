@@ -1,0 +1,47 @@
+body {
+  overflow-x: hidden;
+}
+
+.waiter {
+  background-image: url(../logoFB.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  z-index: 30;
+  position: absolute;
+  top: 0;
+}
+
+.none {
+  display: none;
+}
+
+.fondo-fixed {
+  vertical-align: top;
+  top: 0px;
+  position: fixed;
+  width: 100%;
+}
+
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes evaOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.evaOutRight {
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-name: evaOutRight;
+}
